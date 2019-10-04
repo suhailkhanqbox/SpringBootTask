@@ -23,15 +23,15 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public Movie saveMovie(Movie movie) throws MovieAlreadyExistsException {
 
-        if (movieRepository.existsById(movie.getMovieId()))
+        /*if (movieRepository.existsById(movie.getMovieId()))
         {
             throw new MovieAlreadyExistsException("movie already exist");
-        }
+        }*/
 
         Movie savedMovie= movieRepository.save(movie);
-        if(savedMovie==null)
+        /*if(savedMovie==null)
         {    throw new MovieAlreadyExistsException("movie already exist");}
-        return savedMovie;
+        */return savedMovie;
     }
 
     @Override
@@ -44,4 +44,28 @@ public class MovieServiceImpl implements MovieService {
                 .findById(movieId)
                 .orElseThrow(() -> new ResourceAccessException("Movie not found on :: " + movieId));
     }
+
+    @Override
+    public Movie updateMovie(Movie movie) {
+        return null;
+    }
+
+    @Override
+    public void deleteMovie(Movie movie) {
+        movieRepository.delete(movie);
+    }
+
+
+    @Override
+    public Movie getMovieById(int movieId) throws ResourceAccessException {
+        return movieRepository
+                .findById(movieId)
+                .orElseThrow(() -> new ResourceAccessException("Movie not found on :: " + movieId));
+    }
+
+    @Override
+    public List<Movie> searchMovies(String movieName) {
+        return movieRepository.findByName(movieName);
+    }
+
 }

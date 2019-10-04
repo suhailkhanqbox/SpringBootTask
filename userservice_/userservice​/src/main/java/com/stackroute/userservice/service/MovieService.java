@@ -12,6 +12,11 @@ public Movie saveMovie(Movie movie) throws MovieAlreadyExistsException;
 
 public List<Movie> getAllMovies();
 
-public Movie findById(int movieId);
+public void deleteMovie(Movie movie);
 
+public Movie getMovieById(int movieId);
+
+public Movie updateMovie(Movie movie);
+
+public  List<Movie> searchMovies(String movieName);
 }

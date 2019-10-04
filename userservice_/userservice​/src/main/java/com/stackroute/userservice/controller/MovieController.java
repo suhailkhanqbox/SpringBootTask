@@ -26,7 +26,7 @@ public class MovieController {
     }
 
     @PostMapping("movie")
-    public ResponseEntity<?> saveUser(@RequestBody Movie movie)
+    public ResponseEntity<?> saveMovie(@RequestBody Movie movie)
     {
         ResponseEntity responseEntity;
         try {
@@ -49,33 +49,42 @@ public class MovieController {
     @GetMapping("/movie/{id}")
     public ResponseEntity<Movie> getMovieId(@PathVariable(value = "id") int movieId)
             throws Exception {
-        Movie movie = movieService.findById(movieId);
+        Movie movie = movieService.getMovieById(movieId);
 
         return ResponseEntity.ok().body(movie);
     }
 
-   /* @PutMapping("/movie/{id}")
+    @PutMapping("/movie/{id}")
     public ResponseEntity<Movie> updateUser(
-            @PathVariable(value = "id") int movieId, @Valid @RequestBody User userDetails)
-          *//*  throws Exception {
-        *//**//*Movie movie = movieService.findById(movieId);user.setEmail(userDetails.getEmail());
-        user.setFirstName(userDetails.getFirstName());
-        user.setUpdatedAt(new Date());
-        final User updatedUser = userRepository.save(user);*//**//**//**//*
-        return ResponseEntity.ok(updatedUser);*//**//*
-    }*/
+            @PathVariable(value = "id") int movieId, @Valid @RequestBody Movie movie)
+            throws Exception {
+        Movie movie1=movieService.getMovieById(movieId);
+        movie1.setMovieName(movie.getMovieName());
+        final Movie updatedMovie = movieService.saveMovie(movie1);
+        return ResponseEntity.ok(updatedMovie);
+    }
 
- /*   @DeleteMapping("/movie/{id}")
-    public Map<String, Boolean> deleteUser(@PathVariable(value = "id") Long userId) throws Exception {
-        User user =
-                movieService
-                        .findById(userId)
-                        .orElseThrow(() -> new Exception("User not found on :: " + userId));
-        movieService.delete(user);
+    @DeleteMapping("/movie/{id}")
+    public Map<String, Boolean> deleteMovie(@PathVariable(value = "id") int movieId) throws Exception {
+        Movie movie=movieService.getMovieById(movieId);
+        movieService.deleteMovie(movie);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
-    }*/
+    }
 
+    @GetMapping("/movies/{movieName}")
+    public ResponseEntity<?> searchMovieByName(@PathVariable(value = "movieName") String movieName){
 
+        ResponseEntity responseEntity;
+        try {
+            responseEntity=new ResponseEntity<List<Movie>>(movieService.searchMovies(movieName), HttpStatus.OK);
+        }
+        catch (Exception ex){
+            responseEntity=new ResponseEntity<List<Movie>>(movieService.searchMovies(movieName), HttpStatus.NOT_FOUND);
+        }
+        return responseEntity;
+    }
 }
+
+
