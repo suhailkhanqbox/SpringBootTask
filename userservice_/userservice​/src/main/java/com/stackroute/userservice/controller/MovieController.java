@@ -20,7 +20,7 @@ import java.util.Map;
 public class MovieController {
 
     MovieService movieService;
-
+    private ResponseEntity responseEntity;
     public MovieController(MovieService movieService){
 
         this.movieService=movieService;
@@ -29,7 +29,7 @@ public class MovieController {
     @PostMapping("movie")
     public ResponseEntity<?> saveMovie(@RequestBody Movie movie)
     {
-        ResponseEntity responseEntity;
+       // ResponseEntity responseEntity;
         try {
             movieService.saveMovie(movie);
             responseEntity=new ResponseEntity<String>("Successfully created", HttpStatus.CREATED);
@@ -39,9 +39,8 @@ public class MovieController {
         return responseEntity;
     }
 
-    @GetMapping("movie")
-    public ResponseEntity<?> getAllMovies() throws MovieNotFoundException {
-        ResponseEntity responseEntity;
+    @GetMapping("movies")
+    public ResponseEntity getAllMovies() throws Exception {
 
         return new ResponseEntity<List<Movie>>(movieService.getAllMovies(), HttpStatus.OK);
     }
@@ -76,7 +75,7 @@ public class MovieController {
     @GetMapping("/movies/{movieName}")
     public ResponseEntity<?> searchMovieByName(@PathVariable(value = "movieName") String movieName){
 
-        ResponseEntity responseEntity;
+       // ResponseEntity responseEntity;
         try {
             responseEntity=new ResponseEntity<List<Movie>>(movieService.searchMovies(movieName), HttpStatus.OK);
         }

@@ -13,7 +13,7 @@ public Movie saveMovie(Movie movie) throws MovieAlreadyExistsException;
 
 public List<Movie> getAllMovies() throws MovieNotFoundException;
 
-public void deleteMovie(Movie movie) throws MovieNotFoundException;
+public Movie deleteMovie(Movie movie) throws MovieNotFoundException;
 
 public Movie getMovieById(int movieId) throws MovieNotFoundException;
 

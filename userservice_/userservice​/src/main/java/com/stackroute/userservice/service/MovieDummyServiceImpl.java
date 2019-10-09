@@ -23,8 +23,8 @@ public class MovieDummyServiceImpl implements MovieService {
     }
 
     @Override
-    public void deleteMovie(Movie movie) throws MovieNotFoundException {
-
+    public Movie deleteMovie(Movie movie) throws MovieNotFoundException {
+return null;
     }
 
     @Override
