@@ -5,13 +5,14 @@ import com.stackroute.userservice.exceptions.MovieAlreadyExistsException;
 import com.stackroute.userservice.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
 
 import java.util.List;
 
 @Service
-@Primary
+@Profile("dev")
 public class MovieServiceImpl implements MovieService {
 
     MovieRepository movieRepository;
