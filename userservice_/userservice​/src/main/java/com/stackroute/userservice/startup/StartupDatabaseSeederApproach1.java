@@ -1,7 +1,6 @@
-package com.stackroute.startup;
+package com.stackroute.userservice.startup;
 
-        import com.stackroute.domain.Movie;
-        import com.stackroute.repository.MovieRepository;
+
         import com.stackroute.userservice.domain.Movie;
         import com.stackroute.userservice.repository.MovieRepository;
         import org.springframework.beans.factory.annotation.Autowired;
