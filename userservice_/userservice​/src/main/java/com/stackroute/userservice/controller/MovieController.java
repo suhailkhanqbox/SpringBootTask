@@ -2,6 +2,7 @@ package com.stackroute.userservice.controller;
 
 import com.stackroute.userservice.domain.Movie;
 import com.stackroute.userservice.exceptions.MovieAlreadyExistsException;
+import com.stackroute.userservice.exceptions.MovieNotFoundException;
 import com.stackroute.userservice.service.MovieService;
 import org.apache.catalina.User;
 import org.springframework.http.HttpStatus;
@@ -39,8 +40,7 @@ public class MovieController {
     }
 
     @GetMapping("movie")
-    public ResponseEntity<?> getAllMovies()
-    {
+    public ResponseEntity<?> getAllMovies() throws MovieNotFoundException {
         ResponseEntity responseEntity;
 
         return new ResponseEntity<List<Movie>>(movieService.getAllMovies(), HttpStatus.OK);

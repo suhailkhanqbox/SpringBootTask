@@ -12,7 +12,8 @@ import org.springframework.web.client.ResourceAccessException;
 import java.util.List;
 
 @Service
-@Profile("dev")
+//@Profile("dev")
+@Primary
 public class MovieServiceImpl implements MovieService {
 
     MovieRepository movieRepository;

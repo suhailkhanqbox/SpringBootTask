@@ -9,7 +9,7 @@ package com.stackroute.userservice.service;
         import java.util.List;
 
 @Service("dummy")
-@Profile("test")
+//@Profile("test")
 public class MovieDummyServiceImpl implements MovieService {
 
     @Override
