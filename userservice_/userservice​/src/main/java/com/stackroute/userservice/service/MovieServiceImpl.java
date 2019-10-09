@@ -4,12 +4,14 @@ import com.stackroute.userservice.domain.Movie;
 import com.stackroute.userservice.exceptions.MovieAlreadyExistsException;
 import com.stackroute.userservice.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
 
 import java.util.List;
 
 @Service
+@Primary
 public class MovieServiceImpl implements MovieService {
 
     MovieRepository movieRepository;
